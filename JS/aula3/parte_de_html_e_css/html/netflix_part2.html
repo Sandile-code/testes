@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Netflix Brasil</title>   
+        <style>
+            *{
+                margin:0;padding:0;box-sizing: border-box; 
+
+            }
+            body{
+                background: linear-gradient(to bottom, #330104, #06010a);
+                height: 100vh;
+                margin: 0;
+                background-repeat: no-repeat;
+            }
+            #heading{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                
+                padding: 10px 4%;
+                border-bottom: 2px solid #42424263; 
+               
+            }
+            #logo{
+                width: 120px;
+                height: 80px;
+                object-fit: contain;
+            }
+            #Box-email{
+                justify-content: center;
+                align-items: center;
+                color:white;
+                font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                display:flex;
+                padding-top:40px;
+                margin-top: 100px;
+                text-align: left;
+            }
+            #Box-email h2{
+                color:gray;
+                padding-top: 2%;
+                padding-bottom: 8%;
+            }
+        </style>
+     </head>
+    <body>
+        <div>
+            <div>
+                <header id="heading">
+                    <a href="/JS/aula3/parte_de_html_e_css/netflix.html">
+                    <img id="logo" src="https://occ.a.nflxso.net/dnmt/api/v6/iL4oJVDYZ8KLSrJ6eG2OwtghbfQ/AAAAAeuLioOK1ZSC8bQbffYbz1gZFxugAQdkx7UsMvqKDtFJLk3EWkpY-w8IBimYy_0xmg1aTzugh7JDHsGzv6hqIL9_qklFo-PFSH81MwCe9rokU4kGkdki.svg" alt="Netflix Logo">
+                    </a>
+                </header>
+            <div id="Box-email">
+                <div>
+                <h1>Informe seus dados para entrar</h1>
+                <h2>Ou crie uma conta.</h2>
+                <form action="netflix.html">
+                    <input type="email" placeholder="E-mail"  style ="background-color:transparent;border:1px solid #999; border-radius: 4px;width:500px;height: 50px;color:white; padding: 15px; text-align: left;" required>
+                <div>
+                    <button type="submit" style="background-color:rgb(229, 9, 20); color:white; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; width: 500px; height: 45px; margin-top: 10px; border-radius: 5px;">Continuar</button>
+            </div>
+            </form>
+            </div>
+            </div>
+        </div>
+        </div>
+    </body>
+</html>

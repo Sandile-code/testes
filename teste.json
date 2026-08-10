@@ -1,0 +1,22 @@
+[
+    {
+        "tarefa": "Estudar Python",
+        "concluida": false
+    },
+    {
+        "tarefa": "Estudar C",
+        "concluida": false
+    },
+    {
+        "tarefa": "LImpar",
+        "concluida": false
+    },
+    {
+        "tarefa": "Sair ",
+        "concluida": false
+    },
+    {
+        "tarefa": "Assistir videos",
+        "concluida": false
+    }
+]

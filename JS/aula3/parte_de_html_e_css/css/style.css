@@ -1,0 +1,17 @@
+.heading:hover{
+    background-color: aqua;
+}
+.heading{
+    transition: all 300ms ease-in-out;
+}
+a:visited{
+    color:darkorange;
+}
+a:link{
+    color:deeppink;
+}
+a:hover{
+    background: darkslateblue;
+    color:white;
+    text-decoration: none;
+}
