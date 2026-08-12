@@ -32,6 +32,9 @@ class Carrinho:
         novo_carrinho.produtos = self.produtos + other.produtos
         return novo_carrinho
 
+    def __contains__(self, item):
+        return item in self.produtos
+    
 class Dinheiro:
     def __init__(self, valor):
         self.valor = valor
