@@ -6,6 +6,7 @@ class ContaBancaria:
     @property
     def saldo(self):
         return self._saldo
+    
     @saldo.setter
     def saldo(self, valor):
         if valor < 0:
@@ -19,10 +20,10 @@ class ContaBancaria:
 
         self.saldo += valor
         return True
+    
     def sacar(self, valor):
         if valor > self.saldo or valor <= 0:
             return False
-
 
         self.saldo -= valor
         return True

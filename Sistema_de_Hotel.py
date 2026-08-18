@@ -3,15 +3,28 @@ class Hotel:
     def __init__(self):
         self.quartos = []
 
-    def reservar_quarto (self):
+    def reservar_quarto (self, codigo):
         if not self.quartos:
             print("Ainda não existem quartos cadastrados.")
             return
+        for quarto in self.quartos:
 
+            if codigo == quarto.numero:
+                if quarto.disponivel == True:
+                    print("Quarto Reservado")
+                    quarto.disponivel = False
+                    return
+               
+                raise QuartoIndisponivelError("Quarto Indisponivel.")
+            
+        raise QuartoNaoEncontradoError("Quarto não foi encontrado.")
         
-        
+    def adicionar_quartos(self, quarto):
+        self.quartos.append(quarto)
 
-
+    def listar_quartos(self):
+        for quarto in self.quartos:
+            print(quarto)
 
 class QuartoIndisponivelError(Exception):
     pass
@@ -20,22 +33,20 @@ class QuartoNaoEncontradoError(Exception):
     pass
 
 class Quarto(ABC):
-    def __init__(self, numero, preco_diaria, disponivel):
+    def __init__(self, numero, preco_diaria, _disponivel):
         self.numero = numero
         self.preco_diaria = preco_diaria
-        self._disponivel = disponivel
+        self._disponivel = _disponivel
 
-    def reservar(self):
-        if self._disponivel == False:
-            self._disponivel == True
-            return "Reservado"
+    @property
+    def disponivel(self):
+        return self._disponivel
 
-        return "Indisponivel"
-    def liberar(self):    
-        if self._disponivel == False:
-            self._disponivel == True
-            return "Quarto liberado."
-        
+    @disponivel.setter
+    def disponivel(self, valor):
+        self._disponivel = valor
+
+
     @abstractmethod
     def calcular_custos(self, dias):
         pass
@@ -45,28 +56,30 @@ class Quarto(ABC):
         print(f"Diária: {self.preco_diaria}")
         print(f"Disponibilidade: {self._disponivel}")
 
+    def __str__(self):
+        return f"Quarto {self.numero} - R${self.preco_diaria:.2f}"
+    
 class QuartoSimples(Quarto):
-    def __init__(self, numero, preco_diaria, disponivel):
-        super().__init__(numero, preco_diaria, disponivel)
+    def __init__(self, numero, preco_diaria, _disponivel):
+        super().__init__(numero, preco_diaria, _disponivel)
        
 
     def calcular_custos(self, dias):
         return self.preco_diaria * dias
-
-    def mostrar_dados(self):
-        return super().mostrar_dados()    
+  
 
 class QuartoLuxo(Quarto):
-    def __init__(self, _numero, preco_diaria, disponivel):
-        super().__init__( preco_diaria, disponivel)
-        self._numero = _numero
+    def __init__(self, numero, preco_diaria, _disponivel):
+        super().__init__(numero, preco_diaria, _disponivel)
+        
 
     @property
     def numero(self):
         return self._numero
+    
     @numero.setter
     def numero (self, valor):
-        if valor <= 10:
+        if valor < 11 or valor > 50:
             print("Número de Quarto inválido")
         else:
             self._numero = valor
@@ -74,28 +87,33 @@ class QuartoLuxo(Quarto):
     def calcular_custos(self, dias):
         return self.preco_diaria * dias * 1.2
 
-    def mostrar_dados(self):
-        return super().mostrar_dados()
-
 class Suite(Quarto):
-    def __init__(self, _codigo, preco_diaria, disponivel):
-        super().__init__( preco_diaria, disponivel)
-        self._codigo = _codigo
+    def __init__(self, numero, preco_diaria, _disponivel):
+        super().__init__(numero, preco_diaria, _disponivel)
 
     @property
-    def codigo (self):
-        return self._codigo
-    @codigo.setter
-    def codigo (self, valor):
-        if valor > 10 or valor < 0:
+    def numero (self):
+        return  self._numero
+    
+    @numero.setter
+    def numero (self, valor):
+        if valor > 10 or valor < 1:
             print("Número de quarto inválido.")
         else:
-            self._codigo = valor
-
+            self._numero = valor
 
     def calcular_custos(self, dias):
         return self.preco_diaria * dias * 4.5
 
-    def mostrar_dados(self):
-        return super().mostrar_dados()
 
+hotel = Hotel()
+
+quarto1 = QuartoSimples(900, 29.90, True)
+quarto2 = QuartoLuxo(12, 250.00, True)
+quarto3 = Suite(2, 450.00, True)
+
+hotel.adicionar_quartos(quarto1)
+hotel.adicionar_quartos(quarto2)
+hotel.adicionar_quartos(quarto3)
+
+hotel.reservar_quarto(12)
